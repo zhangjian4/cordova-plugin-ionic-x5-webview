@@ -76,7 +76,6 @@
     <source-file src="src/android/libs/tbs_sdk_thirdapp_v4.3.0.93_43993_sharewithdownloadwithfile_withoutGame_obfs_20210220_114728.jar" target-dir="libs"/>
     <source-file src="src/android/libs/armeabi/liblbs.so" target-dir="libs/armeabi"/>
     <!-- 替换MainActivity.java -->
-    <hook type="after_platform_add" src="scripts/replaceMainActivity.js" />
     <hook type="after_plugin_install" src="scripts/replaceMainActivity.js" />
   </platform>
 
