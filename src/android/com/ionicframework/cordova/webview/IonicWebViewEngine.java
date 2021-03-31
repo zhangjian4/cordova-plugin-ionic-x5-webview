@@ -8,12 +8,12 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
-import android.webkit.ServiceWorkerController;
-import android.webkit.ServiceWorkerClient;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebResourceResponse;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
+import com.tencent.smtt.sdk.ServiceWorkerController;
+import com.tencent.smtt.export.external.interfaces.ServiceWorkerClient;
+import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
+import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
+import com.tencent.smtt.sdk.WebSettings;
+import com.tencent.smtt.sdk.WebView;
 import org.apache.cordova.ConfigXmlParser;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPreferences;
@@ -22,9 +22,9 @@ import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.CordovaWebViewEngine;
 import org.apache.cordova.NativeToJsMessageQueue;
 import org.apache.cordova.PluginManager;
-import org.apache.cordova.engine.SystemWebViewClient;
-import org.apache.cordova.engine.SystemWebViewEngine;
-import org.apache.cordova.engine.SystemWebView;
+import org.apache.cordova.x5engine.X5WebViewClient;
+import org.apache.cordova.x5engine.X5WebViewEngine;
+import org.apache.cordova.x5engine.X5WebView;
 
 public class IonicWebViewEngine extends SystemWebViewEngine {
   public static final String TAG = "IonicWebViewEngine";
@@ -39,16 +39,16 @@ public class IonicWebViewEngine extends SystemWebViewEngine {
    * Used when created via reflection.
    */
   public IonicWebViewEngine(Context context, CordovaPreferences preferences) {
-    super(new SystemWebView(context), preferences);
+    super(new X5WebView(context), preferences);
     Log.d(TAG, "Ionic Web View Engine Starting Right Up 1...");
   }
 
-  public IonicWebViewEngine(SystemWebView webView) {
+  public IonicWebViewEngine(X5WebView webView) {
     super(webView, null);
     Log.d(TAG, "Ionic Web View Engine Starting Right Up 2...");
   }
 
-  public IonicWebViewEngine(SystemWebView webView, CordovaPreferences preferences) {
+  public IonicWebViewEngine(X5WebView webView, CordovaPreferences preferences) {
     super(webView, preferences);
     Log.d(TAG, "Ionic Web View Engine Starting Right Up 3...");
   }
@@ -85,7 +85,7 @@ public class IonicWebViewEngine extends SystemWebViewEngine {
     ServiceWorkerController controller = null;
 
     if (setAsServiceWorkerClient && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-        controller = ServiceWorkerController.getInstance();
+        controller = ServiceWorkerController.getInstance(cordova.getActivity().getApplicationContext());
         controller.setServiceWorkerClient(new ServiceWorkerClient(){
             @Override
             public WebResourceResponse shouldInterceptRequest(WebResourceRequest request) {
@@ -124,10 +124,10 @@ public class IonicWebViewEngine extends SystemWebViewEngine {
   private boolean isDeployDisabled() {
     return preferences.getBoolean("DisableDeploy", false);
   }
-  private class ServerClient extends SystemWebViewClient {
+  private class ServerClient extends X5WebViewClient {
     private ConfigXmlParser parser;
 
-    public ServerClient(SystemWebViewEngine parentEngine, ConfigXmlParser parser) {
+    public ServerClient(X5WebViewEngine parentEngine, ConfigXmlParser parser) {
       super(parentEngine);
       this.parser = parser;
     }

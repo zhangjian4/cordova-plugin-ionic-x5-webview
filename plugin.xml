@@ -47,11 +47,31 @@
           <param name="android-package" value="com.ionicframework.cordova.webview.IonicWebView"/>
       </feature>
     </config-file>
+    <config-file target="AndroidManifest.xml" parent="/*">
+      <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+      <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+      <uses-permission android:name="android.permission.INTERNET" />
+      <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    </config-file>
     <source-file src="src/android/com/ionicframework/cordova/webview/IonicWebViewEngine.java" target-dir="src/com/ionicframework/cordova/webview"/>
     <source-file src="src/android/com/ionicframework/cordova/webview/IonicWebView.java" target-dir="src/com/ionicframework/cordova/webview"/>
     <source-file src="src/android/com/ionicframework/cordova/webview/AndroidProtocolHandler.java" target-dir="src/com/ionicframework/cordova/webview"/>
     <source-file src="src/android/com/ionicframework/cordova/webview/UriMatcher.java" target-dir="src/com/ionicframework/cordova/webview"/>
     <source-file src="src/android/com/ionicframework/cordova/webview/WebViewLocalServer.java" target-dir="src/com/ionicframework/cordova/webview"/>
+
+    <!-- x5内核代码 -->
+    <source-file src="src/android/org/apache/cordova/x5engine/X5CookieManager.java" target-dir="src/org/apache/cordova/x5engine"/>
+    <source-file src="src/android/org/apache/cordova/x5engine/X5CordovaClientCertRequest.java" target-dir="src/org/apache/cordova/x5engine"/>
+    <source-file src="src/android/org/apache/cordova/x5engine/X5CordovaHttpAuthHandler.java" target-dir="src/org/apache/cordova/x5engine"/>
+    <source-file src="src/android/org/apache/cordova/x5engine/X5ExposedJsApi.java" target-dir="src/org/apache/cordova/x5engine"/>
+    <source-file src="src/android/org/apache/cordova/x5engine/X5WebChromeClient.java" target-dir="src/org/apache/cordova/x5engine"/>
+    <source-file src="src/android/org/apache/cordova/x5engine/X5WebView.java" target-dir="src/org/apache/cordova/x5engine"/>
+    <source-file src="src/android/org/apache/cordova/x5engine/X5WebViewClient.java" target-dir="src/org/apache/cordova/x5engine"/>
+    <source-file src="src/android/org/apache/cordova/x5engine/X5WebViewEngine.java" target-dir="src/org/apache/cordova/x5engine"/>
+
+    <source-file src="src/android/libs/tbs_sdk_thirdapp_v4.3.0.93_43993_sharewithdownloadwithfile_withoutGame_obfs_20210220_114728.jar" target-dir="libs"/>
+    <source-file src="src/android/libs/armeabi/liblbs.so" target-dir="libs/armeabi"/>
   </platform>
 
   <!-- ios -->
