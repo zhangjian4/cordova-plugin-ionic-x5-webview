@@ -26,7 +26,7 @@ import org.apache.cordova.x5engine.X5WebViewClient;
 import org.apache.cordova.x5engine.X5WebViewEngine;
 import org.apache.cordova.x5engine.X5WebView;
 
-public class IonicWebViewEngine extends SystemWebViewEngine {
+public class IonicWebViewEngine extends X5WebViewEngine {
   public static final String TAG = "IonicWebViewEngine";
 
   private WebViewLocalServer localServer;
