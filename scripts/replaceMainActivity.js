@@ -1,21 +1,12 @@
-var fs = require("fs");
-var path = require("path");
+const fs = require("fs");
+const path = require("path");
+const util = require("./util");
 
 module.exports = function (context) {
   console.log("start modify MainActivity.java");
   const root = context.opts.projectRoot;
-  const configStr = fs.readFileSync(
-    root + "/platforms/android/android.json",
-    "utf-8"
-  );
-  const config = JSON.parse(configStr);
-  const pluginId = context.opts.plugin.id;
-  const package = config.installed_plugins[pluginId].PACKAGE_NAME;
-  const mainDir = path.join(
-    root,
-    "platforms/android/app/src/main/java",
-    package.replace(/\./g, "/")
-  );
+  const package = util.getPackage(context);
+  const mainDir = util.getMainActivityDir(root, package);
   const mainFile = path.join(mainDir, "MainActivity.java");
   const backFile = path.join(mainDir, "MainActivity.java.bak");
   if (fs.existsSync(backFile)) {
