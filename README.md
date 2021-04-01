@@ -7,6 +7,7 @@
 ### 安装
 
 `cordova plugin remove cordova-plugin-ionic-webview`
+
 `cordova plugin add https://github.com/zhangjian4/cordova-plugin-ionic-x5-webview.git`
 
 首次打开需要加载内核，要耐心等待
