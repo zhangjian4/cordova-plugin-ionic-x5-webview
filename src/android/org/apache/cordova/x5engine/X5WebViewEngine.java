@@ -348,18 +348,20 @@ public class X5WebViewEngine implements CordovaWebViewEngine {
     @Override
     public void evaluateJavascript(String js, ValueCallback<String> callback) {
 
-        if(callback == null)
+        if(callback == null){
             webView.evaluateJavascript(js,null);
-
-         final ValueCallback<String> proxyCallback = callback;
-         com.tencent.smtt.sdk.ValueCallback mCallback = new com.tencent.smtt.sdk.ValueCallback() {
-            @Override
-            public void onReceiveValue(Object o) {
-                if(o instanceof String)
-                    proxyCallback.onReceiveValue((String) o);
-            }
-        };
-        webView.evaluateJavascript(js,mCallback);
+        }else{
+            final ValueCallback<String> proxyCallback = callback;
+            com.tencent.smtt.sdk.ValueCallback mCallback = new com.tencent.smtt.sdk.ValueCallback() {
+                @Override
+                public void onReceiveValue(Object o) {
+                    if(o instanceof String){
+                        proxyCallback.onReceiveValue((String) o);
+                    }  
+                }
+            };
+            webView.evaluateJavascript(js,mCallback);
+        }
     }
 }
 
