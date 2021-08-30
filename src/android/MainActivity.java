@@ -17,29 +17,36 @@
 
 package ${package};
 
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
+
 import org.apache.cordova.*;
+
 import java.util.HashMap;
 
 import com.tencent.smtt.export.external.TbsCoreSettings;
 import com.tencent.smtt.sdk.QbSdk;
 
-public class MainActivity extends CordovaActivity
-{
+public class MainActivity extends CordovaActivity {
   @Override
-  public void onCreate(Bundle savedInstanceState)
-  {
+  public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    initX5();
+
     // enable Cordova apps to be started in the background
     Bundle extras = getIntent().getExtras();
     if (extras != null && extras.getBoolean("cdvStartInBackground", false)) {
       moveTaskToBack(true);
     }
+    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.ECLAIR) {
+      initX5();
+    } else {
+      // Set by <content src="index.html" /> in config.xml
+      loadUrl(launchUrl);
+    }
+
   }
-  
-  public void initX5(){
+
+  public void initX5() {
     HashMap map = new HashMap();
     map.put(TbsCoreSettings.TBS_SETTINGS_USE_SPEEDY_CLASSLOADER, true);
     map.put(TbsCoreSettings.TBS_SETTINGS_USE_DEXLOADER_SERVICE, true);
@@ -53,8 +60,9 @@ public class MainActivity extends CordovaActivity
       }
 
       @Override
-      public void onCoreInitFinished() {}
+      public void onCoreInitFinished() {
+      }
     };
-    QbSdk.initX5Environment(getApplicationContext(),  cb);
+    QbSdk.initX5Environment(getApplicationContext(), cb);
   }
 }
