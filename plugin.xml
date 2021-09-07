@@ -19,22 +19,24 @@
   under the License.
 -->
 
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:rim="http://www.blackberry.com/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-ionic-x5-webview" version="5.0.0">
-    <name>cordova-plugin-ionic-x5-webview</name>
-    <description>Ionic Web View Engine Plugin</description>
-    <license>Apache-2.0</license>
-    <keywords>cordova,wkwebview</keywords>
-    <repo>https://github.com/ionic-team/cordova-plugin-ionic-webview</repo>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+  xmlns:rim="http://www.blackberry.com/ns/widgets"
+  xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-ionic-x5-webview" version="5.0.0">
+  <name>cordova-plugin-ionic-x5-webview</name>
+  <description>Ionic Web View Engine Plugin</description>
+  <license>Apache-2.0</license>
+  <keywords>cordova,wkwebview</keywords>
+  <repo>https://github.com/ionic-team/cordova-plugin-ionic-webview</repo>
 
-	<engines>
-        <engine name="cordova" version=">=7.1.0"/>
-        <engine name="cordova-ios" version=">=4.0.0-dev"/>
-        <engine name="apple-ios" version=">=11.0"/>
-        <engine name="cordova-android" version=">=6.4.0"/>
-	</engines>
+  <engines>
+    <engine name="cordova" version=">=7.1.0"/>
+    <engine name="cordova-ios" version=">=4.0.0-dev"/>
+    <engine name="apple-ios" version=">=11.0"/>
+    <engine name="cordova-android" version=">=6.4.0"/>
+  </engines>
 
   <js-module src="src/www/util.js" name="IonicWebView">
-      <clobbers target="Ionic.WebView"/>
+    <clobbers target="Ionic.WebView"/>
   </js-module>
 
   <platform name="android">
@@ -44,7 +46,7 @@
       <allow-navigation href="ionic://*"/>
       <preference name="webView" value="com.ionicframework.cordova.webview.IonicWebViewEngine"/>
       <feature name="IonicWebView">
-          <param name="android-package" value="com.ionicframework.cordova.webview.IonicWebView"/>
+        <param name="android-package" value="com.ionicframework.cordova.webview.IonicWebView"/>
       </feature>
     </config-file>
     <config-file target="AndroidManifest.xml" parent="/*">
@@ -55,7 +57,7 @@
       <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     </config-file>
     <config-file target="AndroidManifest.xml" parent="/manifest/application">
-        <service android:label="dexopt" android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService" android:process=":dexopt" />
+      <service android:label="dexopt" android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService" android:process=":dexopt" />
     </config-file>
     <source-file src="src/android/com/ionicframework/cordova/webview/IonicWebViewEngine.java" target-dir="src/com/ionicframework/cordova/webview"/>
     <source-file src="src/android/com/ionicframework/cordova/webview/IonicWebView.java" target-dir="src/com/ionicframework/cordova/webview"/>
@@ -73,8 +75,58 @@
     <source-file src="src/android/org/apache/cordova/x5engine/X5WebViewClient.java" target-dir="src/org/apache/cordova/x5engine"/>
     <source-file src="src/android/org/apache/cordova/x5engine/X5WebViewEngine.java" target-dir="src/org/apache/cordova/x5engine"/>
 
-    <source-file src="src/android/libs/tbs_sdk_thirdapp_v4.3.0.93_43993_sharewithdownloadwithfile_withoutGame_obfs_20210220_114728.jar" target-dir="libs"/>
-    <source-file src="src/android/libs/armeabi/liblbs.so" target-dir="libs/armeabi"/>
+    <source-file src="tbs_sdk_thirdapp_v3.5.0.1063_43500_staticwithdownload_withoutGame_obfs_20171011_195714.jar" target-dir="libs"/>
+    <source-file src="src/android/libs/armeabi/libm910b.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libserial_port.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.1.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.apache_dex.jar.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.audio_base.jar.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.dynamic_icu_dex.jar.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libBugly-tbscore.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libcmdsh.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libcommon_basemodule_jni.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libgamehook.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libgamejavahook.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.liblinuxtoolsfortbssdk_jni.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libLzmaDec.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libLzmaDecForMulti.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libmtticu.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libmtttrace.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libmttwebview.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libqb_keystore.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libQimei.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libresources.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libSharpPDecoder.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libtbsDEPS.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libTbsPatch.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libtbs_c++.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libtbs_courgette.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libtbs_crash_handler.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libtbs_v8.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libtencentpos.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libTPGDecoder.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libturingtbs.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libwebhook.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libwebp_base.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libwebviewchromium.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libWxHevcDecoder.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libx5breakpad.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.libzh_cn.so.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.miniqb.conf.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.miniqbres.apk.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.miniqb_dex.jar.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.native_ad.conf.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.native_ad_plugin_dex.jar.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.res.apk.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.tbs.conf.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.tbs_bugly_dex.jar.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.tbs_jars_fusion_dex.jar.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.tbs_jsapi_plugin.jar.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.tbs_sdk_extension_dex.jar.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.tbs_ug_plugin.jar.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.TencentLocationSDK.jar.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.videores.apk.so" target-dir="libs/armeabi"/>
+    <source-file src="src/android/libs/armeabi/libtbs.video_impl_dex.jar.so" target-dir="libs/armeabi"/>
     <!-- 替换MainActivity.java -->
     <hook type="after_plugin_install" src="scripts/replaceMainActivity.js" />
     <hook type="before_plugin_uninstall" src="scripts/restoreMainActivity.js" />
@@ -87,12 +139,12 @@
     </js-module>
 
     <config-file target="config.xml" parent="/*">
-        <allow-navigation href="ionic://*"/>
-        <preference name="deployment-target" value="11.0"/>
-        <feature name="IonicWebView">
-            <param name="ios-package" value="CDVWKWebViewEngine"/>
-        </feature>
-        <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine"/>
+      <allow-navigation href="ionic://*"/>
+      <preference name="deployment-target" value="11.0"/>
+      <feature name="IonicWebView">
+        <param name="ios-package" value="CDVWKWebViewEngine"/>
+      </feature>
+      <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine"/>
     </config-file>
 
     <framework src="WebKit.framework" weak="true"/>

@@ -19,13 +19,12 @@ package ${package};
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 
 import org.apache.cordova.*;
 
-import java.util.HashMap;
-
-import com.tencent.smtt.export.external.TbsCoreSettings;
 import com.tencent.smtt.sdk.QbSdk;
+import com.tencent.smtt.utils.TbsLog;
 
 public class MainActivity extends CordovaActivity {
   @Override
@@ -37,7 +36,7 @@ public class MainActivity extends CordovaActivity {
     if (extras != null && extras.getBoolean("cdvStartInBackground", false)) {
       moveTaskToBack(true);
     }
-    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.ECLAIR) {
+    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1) {
       initX5();
     } else {
       // Set by <content src="index.html" /> in config.xml
@@ -47,22 +46,14 @@ public class MainActivity extends CordovaActivity {
   }
 
   public void initX5() {
-    HashMap map = new HashMap();
-    map.put(TbsCoreSettings.TBS_SETTINGS_USE_SPEEDY_CLASSLOADER, true);
-    map.put(TbsCoreSettings.TBS_SETTINGS_USE_DEXLOADER_SERVICE, true);
-    QbSdk.initTbsSettings(map);
-    QbSdk.setDownloadWithoutWifi(true);
-    QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
-
-      @Override
-      public void onViewInitFinished(boolean b) {
-        loadUrl(launchUrl);
-      }
-
-      @Override
-      public void onCoreInitFinished() {
-      }
-    };
-    QbSdk.initX5Environment(getApplicationContext(), cb);
+    TbsLog.setWriteLogJIT(false);
+    if (QbSdk.canLoadX5(getApplicationContext())) {
+      Log.i("TBS_X5", "已安装好，直接显示");
+    } else {
+      Log.i("TBS_X5", "新安装");
+      boolean ok = QbSdk.preinstallStaticTbs(getApplicationContext());
+      Log.i("TBS_X5", "安装成功：" + ok);
+    }
+    loadUrl(launchUrl);
   }
 }
